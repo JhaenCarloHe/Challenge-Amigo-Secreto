@@ -10,6 +10,11 @@ function limpiarCaja() {
     document.getElementById('amigo').value = '';
 }
 
+function deshabilitarElemento(elemento){
+    document.getElementById(elemento).disabled = true;
+    return;
+}
+
 function actualizarLista() {
     let lista = document.getElementById("listaAmigos");
     lista.innerHTML = ""
@@ -31,7 +36,7 @@ function agregarAmigo() {
     if(amigoIngresado.trim() === "") {
         alert("Por favor, inserte un nombre.")
     } else {
-                listaAmigos.push(amigoIngresado);
+        listaAmigos.push(amigoIngresado);
         limpiarCaja();
         actualizarLista();
         
@@ -39,8 +44,8 @@ function agregarAmigo() {
 }
 
 function sortearAmigo() {
-    if (listaAmigos.length === 0) {
-        alert("No hay amigos registrados para sortear.");
+    if (listaAmigos.length < 2) {
+        alert("Debe registrar mínimo a dos amigos para sortear.");
         return;
     }
 
@@ -48,5 +53,7 @@ function sortearAmigo() {
     let amigoSorteado = listaAmigos[numeroAleatorio];
 
     let resultado = document.getElementById("resultado");
-    resultado.innerHTML = `<li>🎉 El amigo secreto es: <strong>${amigoSorteado}</strong></li>`;
+    resultado.innerHTML = `🎉 El amigo secreto es:${amigoSorteado}`;
+    deshabilitarElemento('amigo');
+    deshabilitarElemento('botonSortear');
 }
