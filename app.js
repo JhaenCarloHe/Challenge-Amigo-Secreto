@@ -12,8 +12,12 @@ function limpiarCaja() {
 
 function deshabilitarElemento(elemento){
     document.getElementById(elemento).disabled = true;
-    return;
 }
+
+function habilitarElemento(elemento){
+    document.getElementById(elemento).disabled = false;
+}
+
 
 function actualizarLista() {
     let lista = document.getElementById("listaAmigos");
@@ -24,7 +28,7 @@ function actualizarLista() {
         li.textContent = listaAmigos[i];
         lista.appendChild(li);
     }
-    return lista.length;
+    return listaAmigos.length;
 }
 
 // Lógica del juego
@@ -56,4 +60,17 @@ function sortearAmigo() {
     resultado.innerHTML = `🎉 El amigo secreto es:${amigoSorteado}`;
     deshabilitarElemento('amigo');
     deshabilitarElemento('botonSortear');
+    deshabilitarElemento('añadir');
+}
+
+function reiniciarJuego() {
+    let lista = document.getElementById("listaAmigos");
+    lista.innerHTML = "";
+    listaAmigos = [];
+    let resultado = document.getElementById("resultado");
+    resultado.innerHTML = "";
+    habilitarElemento('amigo');
+    habilitarElemento('botonSortear');
+    habilitarElemento('añadir');
+    limpiarCaja();
 }
